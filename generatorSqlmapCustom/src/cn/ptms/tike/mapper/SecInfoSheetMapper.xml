@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ptms.tike.mapper.SecInfoSheetMapper" >
+  <resultMap id="BaseResultMap" type="cn.ptms.tike.entity.SecInfoSheet" >
+    <id column="orderpro" property="orderpro" jdbcType="VARCHAR" />
+    <id column="ordertak" property="ordertak" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="bytime" property="bytime" jdbcType="TIMESTAMP" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="piclink" property="piclink" jdbcType="VARCHAR" />
+    <result column="asbts" property="asbts" jdbcType="DOUBLE" />
+    <result column="payee" property="payee" jdbcType="DOUBLE" />
+    <result column="platextr" property="platextr" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    orderpro, ordertak, id, bytime, name, piclink, asbts, payee, platextr
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.ptms.tike.entity.SecInfoSheetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sec_info_sheet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="cn.ptms.tike.entity.SecInfoSheetKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from sec_info_sheet
+    where orderpro = #{orderpro,jdbcType=VARCHAR}
+      and ordertak = #{ordertak,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="cn.ptms.tike.entity.SecInfoSheetKey" >
+    delete from sec_info_sheet
+    where orderpro = #{orderpro,jdbcType=VARCHAR}
+      and ordertak = #{ordertak,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.ptms.tike.entity.SecInfoSheetExample" >
+    delete from sec_info_sheet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.ptms.tike.entity.SecInfoSheet" >
+    insert into sec_info_sheet (orderpro, ordertak, id, 
+      bytime, name, piclink, 
+      asbts, payee, platextr
+      )
+    values (#{orderpro,jdbcType=VARCHAR}, #{ordertak,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, 
+      #{bytime,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, #{piclink,jdbcType=VARCHAR}, 
+      #{asbts,jdbcType=DOUBLE}, #{payee,jdbcType=DOUBLE}, #{platextr,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ptms.tike.entity.SecInfoSheet" >
+    insert into sec_info_sheet
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderpro != null" >
+        orderpro,
+      </if>
+      <if test="ordertak != null" >
+        ordertak,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bytime != null" >
+        bytime,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="piclink != null" >
+        piclink,
+      </if>
+      <if test="asbts != null" >
+        asbts,
+      </if>
+      <if test="payee != null" >
+        payee,
+      </if>
+      <if test="platextr != null" >
+        platextr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderpro != null" >
+        #{orderpro,jdbcType=VARCHAR},
+      </if>
+      <if test="ordertak != null" >
+        #{ordertak,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bytime != null" >
+        #{bytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="piclink != null" >
+        #{piclink,jdbcType=VARCHAR},
+      </if>
+      <if test="asbts != null" >
+        #{asbts,jdbcType=DOUBLE},
+      </if>
+      <if test="payee != null" >
+        #{payee,jdbcType=DOUBLE},
+      </if>
+      <if test="platextr != null" >
+        #{platextr,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.ptms.tike.entity.SecInfoSheetExample" resultType="java.lang.Integer" >
+    select count(*) from sec_info_sheet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sec_info_sheet
+    <set >
+      <if test="record.orderpro != null" >
+        orderpro = #{record.orderpro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ordertak != null" >
+        ordertak = #{record.ordertak,jdbcType=VARCHAR},
+      </if>
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.bytime != null" >
+        bytime = #{record.bytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.piclink != null" >
+        piclink = #{record.piclink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.asbts != null" >
+        asbts = #{record.asbts,jdbcType=DOUBLE},
+      </if>
+      <if test="record.payee != null" >
+        payee = #{record.payee,jdbcType=DOUBLE},
+      </if>
+      <if test="record.platextr != null" >
+        platextr = #{record.platextr,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sec_info_sheet
+    set orderpro = #{record.orderpro,jdbcType=VARCHAR},
+      ordertak = #{record.ordertak,jdbcType=VARCHAR},
+      id = #{record.id,jdbcType=INTEGER},
+      bytime = #{record.bytime,jdbcType=TIMESTAMP},
+      name = #{record.name,jdbcType=VARCHAR},
+      piclink = #{record.piclink,jdbcType=VARCHAR},
+      asbts = #{record.asbts,jdbcType=DOUBLE},
+      payee = #{record.payee,jdbcType=DOUBLE},
+      platextr = #{record.platextr,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ptms.tike.entity.SecInfoSheet" >
+    update sec_info_sheet
+    <set >
+      <if test="id != null" >
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bytime != null" >
+        bytime = #{bytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="piclink != null" >
+        piclink = #{piclink,jdbcType=VARCHAR},
+      </if>
+      <if test="asbts != null" >
+        asbts = #{asbts,jdbcType=DOUBLE},
+      </if>
+      <if test="payee != null" >
+        payee = #{payee,jdbcType=DOUBLE},
+      </if>
+      <if test="platextr != null" >
+        platextr = #{platextr,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where orderpro = #{orderpro,jdbcType=VARCHAR}
+      and ordertak = #{ordertak,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ptms.tike.entity.SecInfoSheet" >
+    update sec_info_sheet
+    set id = #{id,jdbcType=INTEGER},
+      bytime = #{bytime,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=VARCHAR},
+      piclink = #{piclink,jdbcType=VARCHAR},
+      asbts = #{asbts,jdbcType=DOUBLE},
+      payee = #{payee,jdbcType=DOUBLE},
+      platextr = #{platextr,jdbcType=DOUBLE}
+    where orderpro = #{orderpro,jdbcType=VARCHAR}
+      and ordertak = #{ordertak,jdbcType=VARCHAR}
+  </update>
+</mapper>
